@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atharva Sool - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Galaxy Background Animation */
+        .galaxy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Animated Header */
+        header {
+            background: rgba(15, 15, 35, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 60px 40px;
+            border-radius: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 80px rgba(138, 43, 226, 0.3), inset 0 0 50px rgba(138, 43, 226, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideDown 1s ease;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+            animation: rotate 6s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.8)); }
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #a78bfa;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c4b5fd;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(138, 43, 226, 0.2);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Glassmorphic Sections */
+        .section {
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.1), transparent);
+            animation: slide 3s infinite;
+        }
+
+        @keyframes slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #f093fb;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            z-index: 1;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            border-radius: 2px;
+            animation: expand 2s ease-in-out infinite;
+        }
+
+        @keyframes expand {
+            0%, 100% { width: 80px; }
+            50% { width: 120px; }
+        }
+
+        /* Neon Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .skill-item:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(138, 43, 226, 0.6);
+            border-color: #f093fb;
+        }
+
+        .skill-item span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Futuristic Project Cards */
+        .project-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+            background-size: 400%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(138, 43, 226, 0.5);
+        }
+
+        .project-card h3 {
+            color: #f093fb;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-card ul {
+            margin-left: 20px;
+            margin-top: 10px;
+            color: #c4b5fd;
+        }
+
+        .project-card ul li {
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .project-card ul li:hover {
+            color: #f093fb;
+            transform: translateX(5px);
+        }
+
+        /* Animated Certifications */
+        .cert-item {
+            background: rgba(138, 43, 226, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            transition: all 0.4s;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .cert-item:hover {
+            background: rgba(138, 43, 226, 0.15);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+            transform: translateX(10px);
+            border-left-width: 8px;
+        }
+
+        .cert-item strong {
+            color: #f093fb;
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Education with Gradient */
+        .education-item {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(240, 147, 251, 0.15) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s;
+        }
+
+        .education-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.4);
+        }
+
+        .education-item h3 {
+            color: #f093fb;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .objective {
+            font-size: 1.2em;
+            line-height: 1.9;
+            color: #c4b5fd;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .activity {
+            background: rgba(138, 43, 226, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s;
+        }
+
+        .activity:hover {
+            background: rgba(138, 43, 226, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.3);
+        }
+
+        .activity strong {
+            color: #f093fb;
+            font-size: 1.3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #a78bfa;
+            font-size: 0.95em;
+            background: rgba(15, 15, 35, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="galaxy-bg"></div>
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <header>
+            <h1>ATHARVA SOOL</h1>
+            <p class="subtitle">🚀 Computer Engineering Student | Full-Stack Developer | AI Enthusiast</p>
+            <div class="contact-info">
+                <div class="contact-item">📞 +91 8446175736</div>
+                <div class="contact-item">✉️ atharvasool469@gmail.com</div>
+                <div class="contact-item">👤 Age: 20, Male</div>
+            </div>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Objective</h2>
+            <p class="objective">
+                A motivated Computer Engineering student with a strong foundation in problem-solving and hands-on experience in full-stack development using the MERN stack. Eager to apply my technical skills in web development and event management experience to build efficient, user-centric applications in a collaborative team environment.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>⚡ Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item"><span>MERN Stack</span></div>
+                <div class="skill-item"><span>Problem-Solving</span></div>
+                <div class="skill-item"><span>AI Tools & Automation</span></div>
+                <div class="skill-item"><span>Event Management</span></div>
+                <div class="skill-item"><span>Data Analysis</span></div>
+                <div class="skill-item"><span>Communication</span></div>
+                <div class="skill-item"><span>Teamwork</span></div>
+                <div class="skill-item"><span>Prompt Engineering</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💻 Projects</h2>
+            
+            <div class="project-card">
+                <h3>🛒 ShopEasy - E-Commerce Platform</h3>
+                <p style="color: #a78bfa;"><strong>Tech Stack:</strong> MERN Stack (MongoDB, Express.js, React, Node.js)</p>
+                <p style="margin-top: 15px; color: #c4b5fd;">Developed a fully functional, full-stack e-commerce web application enabling users to browse products, manage a shopping cart, and complete secure checkout. The platform includes an administrative dashboard for inventory and order management.</p>
+                <p style="margin-top: 15px; color: #f093fb;"><strong>Key Features:</strong></p>
+                <ul>
+                    <li>User authentication and authorization</li>
+                    <li>Product browsing with search and filter</li>
+                    <li>Shopping cart management</li>
+                    <li>Secure payment integration</li>
+                    <li>Admin dashboard for inventory control</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <h3>📊 Data Analytics Dashboard</h3>
+                <p style="color: #a78bfa;"><strong>Tech Stack:</strong> Python, Pandas, Matplotlib, Seaborn, Excel Integration</p>
+                <p style="margin-top: 15px; color: #c4b5fd;">Built a comprehensive data analytics platform for visualizing and analyzing complex datasets. The project demonstrates proficiency in data manipulation, statistical analysis, and creating interactive visualizations for business insights.</p>
+                <p style="margin-top: 15px; color: #f093fb;"><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Data cleaning and preprocessing pipelines</li>
+                    <li>Interactive charts and graphs (line, bar, pie, scatter plots)</li>
+                    <li>Statistical analysis and trend identification</li>
+                    <li>Excel file processing and report generation</li>
+                    <li>Real-time data visualization dashboard</li>
+                    <li>Export functionality for reports and insights</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎓 Education</h2>
+            <div class="education-item">
+                <h3>Higher Secondary Education (12th Grade)</h3>
+                <p style="color: #c4b5fd;"><strong>M.M.C.C Pune</strong></p>
+                <p style="color: #a78bfa;">Expected: 2025</p>
+            </div>
+            <div class="education-item">
+                <h3>Secondary School Certificate (10th Grade)</h3>
+                <p style="color: #c4b5fd;"><strong>P.E.S Modern High School Eng Medium</strong></p>
+                <p style="color: #a78bfa;">Completed: 2022</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🏆 Certifications</h2>
+            <div class="cert-item">
+                <strong>Prompt Engineering & AI Tool Master Certification</strong>
+                <p style="color: #c4b5fd;">Be10x - July 13, 2024</p>
+            </div>
+            <div class="cert-item">
+                <strong>Web Design using HTML & CSS</strong>
+                <p style="color: #c4b5fd;">Udemy - July 11, 2024</p>
+            </div>
+            <div class="cert-item">
+                <strong>Discover Data Analysis</strong>
+                <p style="color: #c4b5fd;">Microsoft - June 26, 2024</p>
+            </div>
+            <div class="cert-item">
+                <strong>C++ Programming - Beginner to Advance</strong>
+                <p style="color: #c4b5fd;">Udemy - March 31, 2025</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌟 Extra-Curricular Activities</h2>
+            <div class="activity">
+                <strong>Data Manager, Computer Society of India (CSI)</strong>
+                <p style="color: #c4b5fd; margin-top: 10px;">Managed participant databases and streamlined communication by automating bulk email processes using Google Apps Script, enhancing efficiency and engagement within the club.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.1em; margin-bottom: 10px;">© 2025 Atharva Sool. All rights reserved.</p>
+            <p>Built with passion and cutting-edge web technologies 🚀✨</p>
+        </footer>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Add scroll animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
